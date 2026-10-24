@@ -2,7 +2,7 @@
 
 Real-time **focus / attention detection from heart rate**, using a Pulse Sensor + Arduino for acquisition and a Python + scikit-learn pipeline for classification.
 
-> ⚠️ **Proof-of-concept status.** The signal acquisition and real-time GUI are real; the attention classifier is currently trained on synthetic data and still needs validation with real labeled sessions. See [Limitations](#limitations).
+> ⚠️ **Proof-of-concept status.** The signal acquisition and real-time GUI are real; the attention classifier is currently trained on synthetic data and only performs slightly above random. See [Model evaluation](#model-evaluation) and [Limitations](#limitations).
 
 ## Demo
 
@@ -36,6 +36,7 @@ Real-time **focus / attention detection from heart rate**, using a Pulse Sensor 
 - `attention_application.py` — application layer
 - `generate_test_model.py` — train the KNN model from `attention_learning_data.csv`
 - `test_application.py` — end-to-end run on `test_bpm_data.csv`
+- `evaluate_model.py` — cross-validation + baseline comparison for the model
 - `attention_learning_data.csv` / `test_bpm_data.csv` — sample (synthetic) data
 - `attention_model.joblib` — trained KNN model
 - `attention_report.html` / `heart_rate_chart.png` — example outputs
@@ -75,12 +76,30 @@ Real-time **focus / attention detection from heart rate**, using a Pulse Sensor 
 - Pulse Sensor purple wire → analog pin **A0**
 - See [`hardware/README.md`](hardware/README.md) for the sketch and wiring.
 
+## Model evaluation
+
+Run:
+
+```bash
+python evaluate_model.py
+```
+
+Current results on the bundled **synthetic** training set (59 samples, 5-fold stratified CV):
+
+| Metric | Value |
+| --- | --- |
+| KNN(k=5) accuracy | **0.645** ± 0.076 |
+| Random baseline (stratified) | 0.592 ± 0.085 |
+| Majority-class baseline | 0.526 |
+
+> **Honest takeaway:** the model performs only slightly above random guessing (~64% vs ~59%), which confirms the synthetic data carries little real signal. Next step: collect **real labeled data** and re-evaluate.
+
 ## Limitations (honest)
 
 - Training data is **synthetic** (generated), not collected from real subjects.
-- Only ~60 training samples; no cross-validation or accuracy metrics yet.
+- Only ~60 training samples; 5-fold CV accuracy ≈ 64% (barely above random), so the model is not yet meaningful.
 - "Attention" is inferred from HRV features only — **not clinically validated**.
-- Next steps: collect real labeled data, add model evaluation, and define a validation protocol.
+- Next steps: collect real labeled data, re-evaluate, and define a validation protocol.
 
 ## License
 
