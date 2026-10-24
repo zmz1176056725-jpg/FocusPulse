@@ -1,0 +1,68 @@
+
+        <!DOCTYPE html>
+        <html lang="zh-CN">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>注意力集中情况报告</title>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }
+                h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+                h2 { color: #34495e; margin-top: 30px; }
+                .summary { background-color: #f8f9fa; padding: 20px; border-radius: 5px; margin: 20px 0; }
+                .stats { display: flex; gap: 30px; margin: 20px 0; }
+                .stat-box { background-color: #e3f2fd; padding: 15px; border-radius: 5px; min-width: 150px; }
+                .chart-container { margin: 30px 0; text-align: center; }
+                img { max-width: 100%; height: auto; border: 1px solid #ddd; }
+                .legend { margin: 20px 0; }
+                .legend-item { display: inline-block; margin-right: 20px; }
+                .legend-color { width: 20px; height: 20px; display: inline-block; margin-right: 5px; vertical-align: middle; }
+                .focused { background-color: #4CAF50; }
+                .not-focused { background-color: #f44336; }
+            </style>
+        </head>
+        <body>
+            <h1>注意力集中情况报告</h1>
+            <p>生成时间: 2025-12-23 16:59:42</p>
+            
+            <div class="summary">
+                <h2>报告摘要</h2>
+                <div class="stats">
+                    <div class="stat-box">
+                        <strong>总数据点:</strong> 1236<br>
+                        <strong>分析窗口:</strong> 50 个数据点
+                    </div>
+                    <div class="stat-box">
+                        <strong>注意力集中次数:</strong> 479<br>
+                        <strong>注意力不集中次数:</strong> 757
+                    </div>
+                    <div class="stat-box">
+                        <strong>注意力集中比例:</strong> 38.75%<br>
+                        <strong>平均心率:</strong> 81.3 BPM
+                    </div>
+                </div>
+                
+                <h3>注意力状态评估</h3>
+                <p>较差：您的注意力集中时间较少，建议调整学习或工作方式！</p>
+            </div>
+            
+            <div class="chart-container">
+                <h2>心率波形与注意力状态</h2>
+                <img src="heart_rate_chart.png" alt="心率波形图">
+                <div class="legend">
+                    <div class="legend-item">
+                        <span class="legend-color focused"></span> 注意力集中
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color not-focused"></span> 注意力不集中
+                    </div>
+                </div>
+            </div>
+            
+            <h2>详细分析</h2>
+            <p>报告基于心率序列的动态变化趋势进行注意力状态评估。</p>
+            <p>注意力集中状态（绿色）表示心率变化呈现与集中状态相关的模式，</p>
+            <p>注意力不集中状态（红色）表示心率变化呈现与分散状态相关的模式。</p>
+        </body>
+        </html>
+        
